@@ -1,41 +1,64 @@
 import { Switch } from 'react-router';
-import Contacts from '../src/view/Contacts/Contacts';
 import AppBar from '../src/components/AppBar/AppBar';
 import Container from '../src/components/Container/Container';
-import Register from '../src/view/Register/Register';
-import Login from '../src/view/Login/Login';
-import Home from '../src/view/Home/Home';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, Suspense, useEffect } from 'react';
 import authOperations from '../src/redux/auth/auth-operations';
 import PrivateRoute from '../src/components/PrivateRoute/PrivateRoute';
 import PublicRoute from '../src/components/PublicRoute/PublicRoute';
+import authSelectors from '../src/redux/auth/auth-selectors';
+
+const Home = lazy(() =>
+  import('../src/view/Home/Home' /* webpackChunkName: "home-page" */),
+);
+
+const Contacts = lazy(() =>
+  import(
+    '../src/view/Contacts/Contacts' /* webpackChunkName: "contacts-page" */
+  ),
+);
+
+const Register = lazy(() =>
+  import(
+    '../src/view/Register/Register' /* webpackChunkName: "register-page" */
+  ),
+);
+
+const Login = lazy(() =>
+  import('../src/view/Login/Login' /* webpackChunkName: "login-page" */),
+);
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
+
   return (
-    <div>
-      <Container>
-        <AppBar />
-        <Switch>
-          <PublicRoute exact path="/">
-            <Home />
-          </PublicRoute>
-          <PublicRoute path="/register" restricted>
-            <Register />
-          </PublicRoute>
-          <PublicRoute path="/login" restricted redirectTo="/contacts">
-            <Login />
-          </PublicRoute>
-          <PrivateRoute path="/contacts" redirectTo="/">
-            <Contacts />
-          </PrivateRoute>
-        </Switch>
-      </Container>
-    </div>
+    !isFetchingCurrentUser && (
+      <>
+        <Container>
+          <AppBar />
+          <Switch>
+            <Suspense fallback={<p>Завантаження...</p>}>
+              <PublicRoute exact path="/">
+                <Home />
+              </PublicRoute>
+              <PublicRoute path="/register" restricted>
+                <Register />
+              </PublicRoute>
+              <PublicRoute path="/login" restricted redirectTo="/contacts">
+                <Login />
+              </PublicRoute>
+              <PrivateRoute path="/contacts" redirectTo="/login">
+                <Contacts />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
+        </Container>
+      </>
+    )
   );
 }
