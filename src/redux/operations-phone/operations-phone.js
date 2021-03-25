@@ -11,8 +11,6 @@ import {
   fetchContactError,
 } from '../../redux/actions-phone/actions-phone';
 
-//axios.defaults.baseURL = 'http://localhost:4040';
-
 export const fetchContact = () => async dispatch => {
   dispatch(fetchContactRequest());
 
