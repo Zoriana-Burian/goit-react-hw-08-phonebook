@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 import * as contactOperations from '../../redux/operations-phone/operations-phone';
+import { Button, TextField } from '@material-ui/core';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -33,7 +34,14 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className={s.label}>
+      <TextField
+        label="Name"
+        type="text"
+        name="name"
+        value={name}
+        onChange={handleChange}
+      />
+      {/* <label className={s.label}>
         Name
         <input
           className={s.input}
@@ -42,8 +50,15 @@ const ContactForm = () => {
           value={name}
           onChange={handleChange}
         ></input>
-      </label>
-      <label className={s.label}>
+      </label> */}
+      <TextField
+        label="Number"
+        type="text"
+        name="number"
+        value={number}
+        onChange={handleChange}
+      />
+      {/* <label className={s.label}>
         Number
         <input
           className={s.input}
@@ -52,10 +67,13 @@ const ContactForm = () => {
           value={number}
           onChange={handleChange}
         ></input>
-      </label>
-      <button className={s.button} type="submit">
+      </label> */}
+      <Button variant="outlined" color="secondary" type="submit">
         Add contact
-      </button>
+      </Button>
+      {/* <button className={s.button} type="submit">
+        Add contact
+      </button> */}
     </form>
   );
 };

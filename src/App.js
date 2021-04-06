@@ -1,5 +1,5 @@
 import { Switch } from 'react-router';
-import AppBar from '../src/components/AppBar/AppBar';
+import Appbar from '../src/components/AppBar/AppBar';
 import Container from '../src/components/Container/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { lazy, Suspense, useEffect } from 'react';
@@ -40,7 +40,7 @@ export default function App() {
     !isFetchingCurrentUser && (
       <>
         <Container>
-          <AppBar />
+          <Appbar />
           <Switch>
             <Suspense fallback={<p>Завантаження...</p>}>
               <PublicRoute exact path="/">

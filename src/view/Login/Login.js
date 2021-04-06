@@ -2,11 +2,22 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
 import s from './Login.module.css';
+import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 export default function Login() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const paperStyle = {
+    padding: 20,
+    heihth: 70,
+    width: 400,
+    margin: '100px auto',
+  };
+  const buttonStyle = {
+    marginTop: '40px',
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -28,10 +39,24 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className={s.title}>Зайдіть на вашу сторінку</h1>
-
-      <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
-        <label className={s.label}>
+      <Grid>
+        <Paper elevation={10} style={paperStyle}>
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <Grid align="center">
+              <h1 className={s.title}>Зайдіть на вашу сторінку</h1>
+              <Avatar>
+                <LockOpenIcon />
+              </Avatar>
+            </Grid>
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              fullWidth
+            />
+            {/* <label className={s.label}>
           Email
           <input
             className={s.formInput}
@@ -40,9 +65,16 @@ export default function Login() {
             value={email}
             onChange={handleChange}
           />
-        </label>
-
-        <label className={s.label}>
+        </label> */}
+            <TextField
+              label="Пароль"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              fullWidth
+            />{' '}
+            {/* <label className={s.label}>
           Пароль
           <input
             className={s.formInput}
@@ -51,12 +83,19 @@ export default function Login() {
             value={password}
             onChange={handleChange}
           />
-        </label>
-
-        <button className={s.buttonSubmit} type="submit">
-          Вхід
-        </button>
-      </form>
+        </label> */}
+            <Button
+              style={buttonStyle}
+              variant="contained"
+              color="secondary"
+              type="submit"
+              fullWidth
+            >
+              Вхід
+            </Button>
+          </form>{' '}
+        </Paper>
+      </Grid>
     </div>
   );
 }

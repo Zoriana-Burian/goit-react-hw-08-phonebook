@@ -1,8 +1,8 @@
-import s from './Filter.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as contactActions from '../../redux/actions-phone/actions-phone';
 import { getFilter } from '../../redux/selector-phone/selector-phone';
+import { TextField } from '@material-ui/core';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -10,15 +10,12 @@ const Filter = () => {
   const onChange = event =>
     dispatch(contactActions.changeFilter(event.target.value));
   return (
-    <label className={s.label}>
-      Find contacts by name
-      <input
-        className={s.input}
-        type="text"
-        value={value}
-        onChange={onChange}
-      ></input>
-    </label>
+    <TextField
+      label="Find contacts by name"
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
   );
 };
 

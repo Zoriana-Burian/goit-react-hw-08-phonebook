@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
@@ -13,13 +14,14 @@ export default function UserMenu() {
     <div className={s.container}>
       <img src={avatar} alt="" width="32" className={s.avatar} />
       <span className={s.name}>Привіт, {name}</span>
-      <button
-        className={s.buttonSubmit}
+      <Button
+        variant="contained"
+        color="secondary"
         type="button"
         onClick={() => dispatch(authOperations.logOut())}
       >
         Вийти
-      </button>
+      </Button>
     </div>
   );
 }
