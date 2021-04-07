@@ -13,11 +13,11 @@ export default function Contacts() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <div style={{ marginTop: 100 }}>
+      <h1 style={{ color: '#00008B', textAlign: 'center' }}>Phonebook</h1>
       <ContactForm />
       <Filter />
-      <h2>Contacts</h2>
+      <h2 style={{ color: '#008B8B' }}>Contacts</h2>
       <ContactList />
     </div>
   );

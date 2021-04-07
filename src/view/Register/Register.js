@@ -59,17 +59,6 @@ export default function Register() {
             onChange={handleChange}
             fullWidth
           />
-          {/* <label className={s.label}>
-          Ім'я
-          <input
-            className={s.formInput}
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-        </label> */}
-
           <TextField
             label="Email"
             type="email"
@@ -78,18 +67,6 @@ export default function Register() {
             onChange={handleChange}
             fullWidth
           />
-
-          {/* <label className={s.label}>
-          Email
-          <input
-            className={s.formInput}
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label> */}
-
           <TextField
             label="Пароль"
             type="password"
@@ -98,18 +75,6 @@ export default function Register() {
             onChange={handleChange}
             fullWidth
           />
-
-          {/* <label className={s.label}>
-          Пароль
-          <input
-            className={s.formInput}
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label> */}
-
           <Button
             variant="outlined"
             color="secondary"

@@ -3,24 +3,27 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as contactOperations from '../../redux/operations-phone/operations-phone';
 import { visibleContacts } from '../../redux/selector-phone/selector-phone';
+import { Button } from '@material-ui/core';
 
 const ContactList = () => {
   const contacts = useSelector(visibleContacts);
   const dispatch = useDispatch();
   const OnDeleteContact = id => dispatch(contactOperations.deleteContacts(id));
   return (
-    <ul className={s.contactList}>
+    <ul>
       {contacts.map(({ id, name, number }) => (
         <li className={s.contacts} key={id}>
           <p className={s.name}>{name}:</p>
           <p className={s.number}>{number}</p>
-          <button
+          <Button
+            variant="contained"
+            color="primary"
             type="button"
+            style={{ marginRight: 15 }}
             onClick={() => OnDeleteContact(id)}
-            className={s.button}
           >
             Delete
-          </button>
+          </Button>
         </li>
       ))}
     </ul>

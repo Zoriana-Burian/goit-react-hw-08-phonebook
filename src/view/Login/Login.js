@@ -12,7 +12,7 @@ export default function Login() {
   const paperStyle = {
     padding: 20,
     heihth: 70,
-    width: 400,
+    width: 430,
     margin: '100px auto',
   };
   const buttonStyle = {
@@ -43,7 +43,7 @@ export default function Login() {
         <Paper elevation={10} style={paperStyle}>
           <form onSubmit={handleSubmit} autoComplete="off">
             <Grid align="center">
-              <h1 className={s.title}>Зайдіть на вашу сторінку</h1>
+              <h1 className={s.title}>Зайдіть, будь ласка, на сторінку</h1>
               <Avatar>
                 <LockOpenIcon />
               </Avatar>
@@ -56,16 +56,6 @@ export default function Login() {
               onChange={handleChange}
               fullWidth
             />
-            {/* <label className={s.label}>
-          Email
-          <input
-            className={s.formInput}
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label> */}
             <TextField
               label="Пароль"
               type="password"
@@ -73,17 +63,7 @@ export default function Login() {
               value={password}
               onChange={handleChange}
               fullWidth
-            />{' '}
-            {/* <label className={s.label}>
-          Пароль
-          <input
-            className={s.formInput}
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label> */}
+            />
             <Button
               style={buttonStyle}
               variant="contained"

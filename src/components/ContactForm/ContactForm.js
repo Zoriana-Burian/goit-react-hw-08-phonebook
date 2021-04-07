@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import s from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 import * as contactOperations from '../../redux/operations-phone/operations-phone';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Grid, Paper, TextField } from '@material-ui/core';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
+  const paperStyle = {
+    padding: 20,
+    heihth: 70,
+    width: 400,
+    margin: '20px auto',
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -33,48 +38,38 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Name"
-        type="text"
-        name="name"
-        value={name}
-        onChange={handleChange}
-      />
-      {/* <label className={s.label}>
-        Name
-        <input
-          className={s.input}
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-        ></input>
-      </label> */}
-      <TextField
-        label="Number"
-        type="text"
-        name="number"
-        value={number}
-        onChange={handleChange}
-      />
-      {/* <label className={s.label}>
-        Number
-        <input
-          className={s.input}
-          type="text"
-          name="number"
-          value={number}
-          onChange={handleChange}
-        ></input>
-      </label> */}
-      <Button variant="outlined" color="secondary" type="submit">
-        Add contact
-      </Button>
-      {/* <button className={s.button} type="submit">
-        Add contact
-      </button> */}
-    </form>
+    <Grid align="center">
+      <Paper style={paperStyle}>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            fullWidth
+          />
+
+          <TextField
+            label="Number"
+            type="text"
+            name="number"
+            value={number}
+            onChange={handleChange}
+            fullWidth
+          />
+
+          <Button
+            variant="outlined"
+            color="secondary"
+            type="submit"
+            style={{ marginTop: 20 }}
+          >
+            Add contact
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
   );
 };
 
